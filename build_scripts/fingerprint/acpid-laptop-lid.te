@@ -1,0 +1,17 @@
+
+module acpid-laptop-lid 1.0;
+
+require {
+	type systemd_unit_file_t;
+	type init_t;
+	type apmd_t;
+	class service { start status stop };
+	class system { reload start status stop };
+}
+
+#============= apmd_t ==============
+
+allow apmd_t init_t:system { start status stop };
+allow apmd_t init_t:system reload;
+
+allow apmd_t systemd_unit_file_t:service { start status stop };

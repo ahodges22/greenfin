@@ -2,23 +2,22 @@
 
 set -ouex pipefail
 
-### Install packages
+echo "::group:: ===Install 1Password==="
+/tmp/1password.sh
+echo "::endgroup::"
 
-# Packages can be installed from any enabled yum repo on the image.
-# RPMfusion repos are available by default in ublue main images
-# List of rpmfusion packages can be found here:
-# https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
+echo "::group:: ===Install GitHub Desktop==="
+/tmp/github.sh
+echo "::endgroup::"
 
-# this installs a package from fedora repos
-dnf install -y tmux 
+echo "::group:: ===Install Other Packages==="
+/tmp/packages.sh
+echo "::endgroup::"
 
-# Use a COPR Example:
-#
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
-# Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
+echo "::group:: ===Install Framework Tool==="
+/tmp/framework.sh
+echo "::endgroup::"
 
-#### Example for enabling a System Unit File
-
-systemctl enable podman.socket
+echo "::group:: ===Enable Closed Lid Disable Finterprint==="
+/tmp/fingerprint.sh
+echo "::endgroup::"
