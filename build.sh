@@ -6,10 +6,6 @@ echo "::group:: ===Install 1Password==="
 /tmp/1password.sh
 echo "::endgroup::"
 
-echo "::group:: ===Install GitHub Desktop==="
-/tmp/github.sh
-echo "::endgroup::"
-
 echo "::group:: ===Install Other Packages==="
 /tmp/packages.sh
 echo "::endgroup::"
